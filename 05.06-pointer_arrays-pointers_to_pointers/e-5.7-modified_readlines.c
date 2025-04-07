@@ -21,7 +21,7 @@ int readlines(char *lineptr[], char *linestor, int maxlines)
 	line[len-1] = '\0';   // delete newline
 	strcpy(p, line);
 	lineptr[nlines++] = p;
-    p += len;
+	p += len;
       }
   return nlines;
 }
