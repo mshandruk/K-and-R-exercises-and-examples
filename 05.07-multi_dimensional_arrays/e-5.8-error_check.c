@@ -6,11 +6,9 @@ void month_day(int year, int yearday, int *pmonth, int *pday);
 int main(void)
 {
   int y = 1984, m = 6, d = 30, yd = 366;
-  int *pm, *pd;
-
   printf("Day: %d\n", day_of_year(y, m, d));
-  month_day(y, yd, pm, pd);
-  printf("Month: %d, Day: %d\n", *pm, *pd);
+  month_day(y, yd, &m, &d);
+  printf("Month: %d, Day: %d\n", m, d);
   return 0;
 }
 static char daytab[2][13] = {
@@ -22,7 +20,7 @@ int day_of_year(int year, int month, int day)
 {
   int i, leap;
 
-  leap = year%4 == 0 && year%100 != 0 || year%400 == 0;
+  leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
   if (month < 1 || month > 12)
     {
       printf("error: invalid month!\n");
@@ -43,7 +41,7 @@ void month_day(int year, int yearday, int *pmonth, int *pday)
 {
   int i, leap;
 
-  leap = year%4 == 0 && year%100 != 0 || year%400 == 0;
+  leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
   if ((!leap && yearday > 365) || (leap && yearday > 366))
   {
 	  printf("error: not a valid day!\n");
