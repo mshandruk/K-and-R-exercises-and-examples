@@ -44,20 +44,11 @@ void month_day(int year, int yearday, int *pmonth, int *pday)
   int i, leap;
 
   leap = year%4 == 0 && year%100 != 0 || year%400 == 0;
-  if (leap)
-    {
-      if (yearday > 365)
-	{
+  if ((!leap && yearday > 365) || (leap && yearday > 366))
+  {
 	  printf("error: not a valid day!\n");
 	  return;
-	}
-    }
-  else
-    if (yearday > 366)
-      {
-	printf("error: not a valid day!\n");
-	return;	
-      }
+  }
     
   for (i = 1; yearday > daytab[leap][i]; i++)
     yearday -= daytab[leap][i];
